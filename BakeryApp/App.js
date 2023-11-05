@@ -6,12 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
-import CartScreen from './screens/CartScreen';
 import BrandScreen from './screens/BrandScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import NotificationScreen from './screens/NotificationScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Entypo,Foundation,Ionicons } from '@expo/vector-icons'; 
+import CartScreen from './cart';
+import NotificationScreen from './notif';
 
 
 const Stack = createStackNavigator();
