@@ -1,14 +1,19 @@
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button, ScrollView } from 'react-native'
 import * as React from 'react';
+import CardContainerTemp from '../components/Card-containerTemp';
 
 
 
 const HomeScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>HomeScreen</Text>
-      <Button title='Go to About' onPress={() => navigation.navigate('About')}/>
-    </View>
+    <ScrollView>
+      <Text style={styles.text}>Banh kem</Text>
+      <CardContainerTemp/>
+      <Text style={styles.text}>Banh Sinh Nhat</Text>
+      <CardContainerTemp/>
+      <Text style={styles.text}>Banh Nuong</Text>
+      <CardContainerTemp/>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({
