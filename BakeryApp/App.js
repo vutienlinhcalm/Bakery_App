@@ -36,7 +36,7 @@ export default function App() {
         tabBarLabel:'Trang chủ',
         tabBarIcon:()=>(<Entypo name="home" size={24} color="black" />)
       }}
-      name="Hom" 
+      name="Home" 
       component={HomeScreen} />
       <Tab.Screen 
       options={{
