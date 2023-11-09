@@ -1,10 +1,12 @@
-import { View, Text,StyleSheet } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, Text, Button } from 'react-native'
+import * as React from 'react';
 
-const AboutScreen = () => {
+
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>AboutScreen</Text>
+      <Text style={styles.text}>HomeScreen:</Text>
+      <Button title='Go to About'/>
     </View>
   )
 }
@@ -19,4 +21,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     }
 });
-export default AboutScreen
+export default HomeScreen
