@@ -22,6 +22,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator()
 >>>>>>> Luc
 export default function App() {
+<<<<<<< HEAD
   const [initializing,setInitializing] = useState(true);
   const [user,setUser] = useState();
   function onAuthStateChanged(user) {
@@ -32,6 +33,49 @@ export default function App() {
     const subcribe = auth.onAuthStateChanged(onAuthStateChanged)
     return subcribe;
   },[]);
+=======
+  return (
+    
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName='Home'>
+    //     <Stack.Screen name='Home' component={HomeScreen}></Stack.Screen>
+    //     <Stack.Screen name='About' component={AboutScreen}></Stack.Screen>
+    //   </Stack.Navigator>  
+    // </NavigationContainer>
+    <NavigationContainer>
+    <Tab.Navigator screenOptions={
+      {
+        tabBarActiveTintColor:'blue',
+      }
+    }>
+      <Tab.Screen
+      options={{
+        tabBarLabel:'Trang chủ',
+        tabBarIcon:()=>(<Entypo name="home" size={24} color="black" />)
+      }}
+      name="Home" 
+      component={HomeScreen} />
+      <Tab.Screen 
+      options={{
+        tabBarLabel:'Đơn hàng',
+        tabBarIcon:()=>(<Foundation name="shopping-cart" size={28} color="black" />)
+      }}
+      name="Cart" component={CartScreen} />
+      <Tab.Screen 
+      name='NameBrand' component={BrandScreen}/>
+      <Tab.Screen
+      options={{
+        tabBarLabel:'Thông báo',
+        tabBarIcon:()=>(<Ionicons name="notifications" size={24} color="black" /> )
+      }}
+      name='Notification' component={NotificationScreen}/>
+      <Tab.Screen 
+      options={{
+        tabBarLabel:'Tài khoản',
+         tabBarIcon:()=>(<Ionicons name="person" size={24} color="black" />)
+      }}
+      name='Profile' component={ProfileScreen}/>
+>>>>>>> Nhan
 
 <<<<<<< HEAD
   if(initializing) return null;
