@@ -1,10 +1,10 @@
 import { View, Text, Image,StyleSheet,TouchableOpacity,SafeAreaView,ScrollView, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import CustomTextInput from '../common/CustomTextInput'
+import React, { useState } from 'react'
 import firebase from 'firebase/compat/app';
+import CustomTextInput from '../common/CustomTextInput';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/compat/auth';
-import {auth} from '../../firebase';
-const SignInScreen = ({navigation}) => {
+import {auth} from '../../configfirebase';
+const LoginScreen = ({navigation}) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[loading, setLoading] = useState(false);
@@ -73,11 +73,6 @@ const SignInScreen = ({navigation}) => {
             Đăng Nhập
         </Text>
         </TouchableOpacity>
-       
-        <Text style={styles.textbuttom}
-        onPress={() => navigation.navigate('Register')}>
-            Bạn chưa có tài khoản?
-        </Text>
         </ScrollView>
     </SafeAreaView>
   )
@@ -120,4 +115,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignInScreen
+export default LoginScreen

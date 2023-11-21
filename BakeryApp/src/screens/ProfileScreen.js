@@ -1,10 +1,21 @@
 import { View, Text, TouchableOpacity,StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import firebase from 'firebase/compat/app';
 import { auth } from '../../firebase'
 
 const ProfileScreen = ({navigation}) => {
-  
+  const[name,setName] = useState('')
+  useEffect(()=>{
+    firebase.firestore().collection('users')
+    .doc(firebase.auth().currentUser.uid).get()
+    .then((snapshot)=>{
+      if (snapshot.exists){
+        setName(snapshot.data())
+      }else{
+        console.log('user does not exists')
+      }
+    })
+  },[]);
   const handleLogout = () =>{
     firebase.auth().signOut().then(function() { () => {
       navigation.navigate('SignIn')
@@ -15,7 +26,7 @@ const ProfileScreen = ({navigation}) => {
   }
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen:{auth.currentUser?.email}</Text>
+      <Text>ProfileScreen:{auth.currentUser?.name}</Text>
       <TouchableOpacity style={styles.button} onPress={handleLogout} >
         <Text style={styles.buttonText}>Đăng xuất</Text>
 

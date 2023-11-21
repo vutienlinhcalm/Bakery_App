@@ -1,24 +1,20 @@
 import { View, Text,StyleSheet,TouchableOpacity,Image, SafeAreaView,ScrollView, } from 'react-native'
 import React,{useState} from 'react'
 import CustomTextInput from '../common/CustomTextInput'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/compat/auth';
+import {auth} from '../../firebase';
+import firebase from 'firebase/compat/app';
 const RegisterScreen = ({navigation}) => {
-  const[phone, setPhone] = useState('');
   const[email, setEmail] = useState('');
   const[username, setUsername] = useState('');
   const[password, setPassword] = useState('');
   const[confirmPassword, setConfirmPassword] = useState('');
-  const[badPhone, setBadPhone] = useState(false);
   const[badEmail, setBadEmail] = useState(false);
   const[badUsername, setBadUsername] = useState(false);
   const[badPassword, setBadPassword] = useState(false);
   const[badConfirmPassword, setBadConfirmPassword] = useState(false);
 
   const validate = ()=>{
-    if(phone =='' && phone.length < 10){
-        setBadPhone(true);
-    } else if (phone.length === 10){
-      setBadPhone(false);
-    }
 
     if(email ==''){
       setBadEmail(true);
@@ -44,6 +40,34 @@ const RegisterScreen = ({navigation}) => {
       setBadConfirmPassword(false);
     }
 }
+const SignUp = async (email, password, username) => {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then(()=>{
+    firebase.auth().currentUser.sendEmailVerification({
+      handleCodeInApp: true,
+      URL:'https://data-tiembanh.firebaseapp.com',
+    })
+    .then(()=>{
+      alert('Verified');
+    }).catch((error) =>{
+      alert(error.message);
+    })
+    .then(()=>{
+      firebase.firestore().collection('users')
+      .doc(firebase.auth().currentUser.uid)
+      .set({
+        username,
+        email,
+      })
+    })
+    .catch((error) =>{
+      alert(error.message);
+    })
+  })
+  .catch((error =>{
+    alert(error.message);
+  }));
+}
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -53,18 +77,6 @@ const RegisterScreen = ({navigation}) => {
             style={styles.image}
         />
        <Text style={styles.text}>Tạo tài khoản</Text>
-       <CustomTextInput
-        placeholder={'Số điện thoại'}
-        icon={source=require('../image/smartphone.png')}
-        keyboardType={'numeric'}
-        value={phone}
-        onChangeText={(txt)=>{
-            setPhone(txt);
-        }}
-       />
-        {
-        badPhone === true && (<Text style={{marginTop:10,alignSelf:'center', color:'red'}}>Vui lòng nhập số điện thoại</Text>)
-       }
        <CustomTextInput 
        placeholder={'Email'}
        icon={source=require('../image/mail.png')}
@@ -112,11 +124,15 @@ const RegisterScreen = ({navigation}) => {
        }
         <TouchableOpacity 
         style={styles.button}
-        onPress={()=>{validate()}}>
+        onPress={()=>{
+          validate()
+          SignUp(email, password, username)
+          }}>
         <Text style={styles.buttonText}>
             Đăng Ký
         </Text>
         </TouchableOpacity>
+
         <Text style={styles.textbuttom}
         onPress={() => {navigation.goBack()}}>
             Bạn đã có tài khoản?
