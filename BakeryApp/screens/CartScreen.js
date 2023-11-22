@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { CartChecker } from '../components/Cart/CartChecker'
 
 const CartScreen = () => {
   return (
     <View>
-      <Text>CartScreen</Text>
+      <CartChecker/>
     </View>
   )
 }

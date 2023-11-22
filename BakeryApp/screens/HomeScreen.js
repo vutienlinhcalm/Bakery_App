@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, Button, ScrollView } from 'react-native'
 import * as React from 'react';
-import CardContainerTemp from '../components/Card-containerTemp';
+import { TypeContainer } from '../components/Catagogy/TypeContainer';
 
 
 
@@ -8,11 +8,11 @@ const HomeScreen = ({navigation}) => {
   return (
     <ScrollView>
       <Text style={styles.text}>Banh kem</Text>
-      <CardContainerTemp/>
+      <TypeContainer/>
       <Text style={styles.text}>Banh Sinh Nhat</Text>
-      <CardContainerTemp/>
+      <TypeContainer/>
       <Text style={styles.text}>Banh Nuong</Text>
-      <CardContainerTemp/>
+      <TypeContainer/>
     </ScrollView>
   )
 }

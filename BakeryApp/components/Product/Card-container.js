@@ -1,7 +1,6 @@
-import React from "react";
-import { StyleSheet, View, Text } from 'react-native'
 import cardData from "./cardData";
-import Card from "./cards";
+import { StyleSheet, ScrollView, View, Text} from 'react-native'
+import {Card} from "./cards";
 
 const CardElement = cardData.map(items =>
     <Card 
@@ -9,11 +8,15 @@ const CardElement = cardData.map(items =>
        {...items}
        />)
 
+
+
 export function CardContainer() {
     return(
-        <View style={styles.container}>
-            <Text style={styles.text}>Container</Text>
-            {CardElement}
+        <View>
+            <Text>Container6</Text>
+            <ScrollView horizontal>
+                {CardElement}
+            </ScrollView>
         </View>
     )
 }
@@ -21,9 +24,11 @@ export function CardContainer() {
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
-        backgroundColor: 'red',
         margin: 'auto',
+        borderColor: 'black',
+        borderEndWidth: 2,
+        height: 220,
+        
     },
     text:{
         fontSize: 12,
@@ -31,3 +36,4 @@ const styles = StyleSheet.create({
         color: 'gray',
     }
 });
+

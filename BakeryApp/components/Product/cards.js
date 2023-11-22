@@ -1,15 +1,15 @@
-import React from "react";
+
 import { Button, View, Text, StyleSheet, Image } from 'react-native'
 
-const Card = () => {
+export function Card(props) {
     return(
         <View style={styles.container}>
-            <Image
-        style={styles.tinyLogo}
-        source={require('../assets/favicon.png')}
-      />
-                <Text>Ten Banh</Text>
-                <Text>Mo ta </Text>
+            <Image style={styles.tinyLogo}
+                source={require('../../assets/favicon.png')}
+                />
+                <Text>{props.name}</Text>
+                <Text>{props.desp}</Text>
+                <Text>{props.prize}</Text>
                 <Button title="Buy">prize</Button>
         </View>
     )
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     container:{
         margin: 5,
         padding: 6,
-        height: 170,
+        height: 190,
         width: 150 ,
         borderRadius:10,
         borderColor: 'black',
@@ -35,4 +35,3 @@ const styles = StyleSheet.create({
         justifyContent:'flex-end',
     }
 });
-export default Card

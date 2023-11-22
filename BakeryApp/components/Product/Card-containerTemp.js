@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native'
 import Card from "./cards";
 
 
-const CardContainerTemp = () => {
+export function CardContainerTemp() {
     return(
         <ScrollView horizontal style={styles.container}>
             <Card/>
@@ -30,4 +30,3 @@ const styles = StyleSheet.create({
         color: 'gray',
     }
 });
-export default CardContainerTemp
