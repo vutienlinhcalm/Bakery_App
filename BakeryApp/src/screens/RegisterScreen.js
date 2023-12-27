@@ -1,9 +1,10 @@
 import { View, Text,StyleSheet,TouchableOpacity,Image, SafeAreaView,ScrollView, } from 'react-native'
 import React,{useState} from 'react'
 import CustomTextInput from '../common/CustomTextInput'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/compat/auth';
-import {auth} from '../../firebase';
+import { auth, db } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import firebase from 'firebase/compat/app';
+import { doc, setDoc } from "firebase/firestore";
 const RegisterScreen = ({navigation}) => {
   const[email, setEmail] = useState('');
   const[username, setUsername] = useState('');
@@ -40,33 +41,31 @@ const RegisterScreen = ({navigation}) => {
       setBadConfirmPassword(false);
     }
 }
-const SignUp = async (email, password, username) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then(()=>{
-    firebase.auth().currentUser.sendEmailVerification({
-      handleCodeInApp: true,
-      URL:'https://data-tiembanh.firebaseapp.com',
-    })
-    .then(()=>{
-      alert('Verified');
-    }).catch((error) =>{
-      alert(error.message);
-    })
-    .then(()=>{
-      firebase.firestore().collection('users')
-      .doc(firebase.auth().currentUser.uid)
-      .set({
-        username,
-        email,
-      })
-    })
-    .catch((error) =>{
-      alert(error.message);
-    })
-  })
-  .catch((error =>{
-    alert(error.message);
-  }));
+ const SignUp = () => {
+  if(password === confirmPassword){
+
+    createUserWithEmailAndPassword(auth, email, password)
+   .then((userCredential)=>{
+     console.log("user credential",userCredential);
+         const user = userCredential._tokenResponse.email;
+         const myUserUid = auth.currentUser.uid;
+ 
+         setDoc(doc(db,"users",`${myUserUid}`),{
+           email:user,
+           username:username,
+           password:password
+         })
+     firebase.auth().currentUser.sendEmailVerification()
+     .then(()=>{
+       alert('Tạo tài khoản thành công');
+     })
+     .catch((error) =>{
+       alert(error.message);
+     })
+   });
+  }else{
+    alert('Xác nhận mật khẩu không trùng khớp')
+  }
 }
   return (
     <SafeAreaView style={styles.container}>
@@ -114,6 +113,7 @@ const SignUp = async (email, password, username) => {
        <CustomTextInput 
        placeholder={'Xác nhận mật khẩu'}
        icon={source=require('../image/lock.png')}
+       type={'password'}
        value={confirmPassword}
         onChangeText={(txt)=>{
           setConfirmPassword(txt);
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     button:{
-        backgroundColor:'red',
+        backgroundColor:'#FF5757',
         justifyContent:'center',
         alignItems:'center',
         alignSelf: 'center',
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         color:'#000000',
-        fontSize:28,
+        fontSize:32,
         fontWeight: 'bold',
     },
     textbuttom:{

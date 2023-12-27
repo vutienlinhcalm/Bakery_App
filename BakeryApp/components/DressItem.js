@@ -40,15 +40,15 @@ const DressItem = ({item}) => {
         <View>
           <Text
             style={{
-              width: 90,
-              fontSize: 16,
+              width: 83,
+              fontSize: 17,
               fontWeight: "500",
-              marginBottom: 5,
+              marginBottom: 7,
             }}
           >
             {item.productname}
           </Text>
-          <Text style={{ width: 60, color: "gray", fontSize: 14 }}>
+          <Text style={{ width: 60, color: "gray", fontSize: 15 }}>
             ${item.price}
           </Text>
         </View>

@@ -1,7 +1,12 @@
-// Import the functions you need from the SDKs you need
+//Import the functions you need from the SDKs you need
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { getFirestore, collection, collectionGroup, addDoc, getDoc, getDocs, setDoc, updateDoc, doc, onSnapshot, query, where} from "firebase/firestore";
+// import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,11 +20,20 @@ const firebaseConfig = {
   appId: "1:561784725633:web:03a0066a7ce5fe1da26d80"
 };
 
-// Initialize Firebase
+//Initialize Firebase
 const firebaseApp =firebase.initializeApp(firebaseConfig);
 
 // Use these for db & auth
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
 
-export { auth, db };
+
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+// const auth = getAuth(app);
+// const db = getFirestore(app);
+// // Initialize Cloud Storage and get a reference to the service
+// const storage = getStorage(app);
+
+
+export { auth,  db };

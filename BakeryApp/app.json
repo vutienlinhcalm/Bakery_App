@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Beginners_two",
-    "slug": "Beginners_two",
+    "name": "BakeryApp",
+    "slug": "BakeryApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

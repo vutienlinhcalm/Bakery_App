@@ -4,18 +4,19 @@ import firebase from 'firebase/compat/app';
 import { auth } from '../../firebase'
 
 const ProfileScreen = ({navigation}) => {
-  const[name,setName] = useState('')
-  useEffect(()=>{
-    firebase.firestore().collection('users')
-    .doc(firebase.auth().currentUser.uid).get()
-    .then((snapshot)=>{
-      if (snapshot.exists){
-        setName(snapshot.data())
-      }else{
-        console.log('user does not exists')
-      }
-    })
-  },[]);
+  // const[name,setName] = useState('')
+
+  // useEffect(()=>{
+  //   firebase.firestore().collection('users')
+  //   .doc(firebase.auth().currentUser.uid).get()
+  //   .then((snapshot)=>{
+  //     if (snapshot.exists){
+  //       setName(snapshot.data())
+  //     }else{
+  //       console.log('user does not exists')
+  //     }
+  //   })
+  // },[]);
   const handleLogout = () =>{
     firebase.auth().signOut().then(function() { () => {
       navigation.navigate('SignIn')
@@ -24,11 +25,24 @@ const ProfileScreen = ({navigation}) => {
       console.log(error);
     });
   }
+
+  const changePassword = () => {
+    firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email)
+    .then(()=>{
+      alert('Đổi mật khẩu')
+    }).catch((error) =>{
+      alert(error)
+    })
+  }
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen:{auth.currentUser?.name}</Text>
+      <Text>ProfileScreen:{auth.currentUser?.uid}</Text>
       <TouchableOpacity style={styles.button} onPress={handleLogout} >
         <Text style={styles.buttonText}>Đăng xuất</Text>
+
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={changePassword} >
+        <Text style={styles.buttonText}>Đổi Mật Khẩu</Text>
 
       </TouchableOpacity>
     </View>

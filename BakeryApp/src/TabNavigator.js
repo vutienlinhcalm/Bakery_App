@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import CartScreen from './screens/CartScreen';
 import BrandScreen from './screens/BrandScreen';
 import ProfileStack from './ProfileStack';
+import HomeStack from './HomeStack';
 import NotificationScreen from './screens/NotificationScreen';
 import { Entypo,Foundation,Ionicons } from '@expo/vector-icons'; 
 
@@ -22,30 +23,44 @@ const TabNavigator = () => {
       <Tab.Screen
       options={{
         tabBarLabel:'Trang chủ',
-        tabBarIcon:()=>(<Entypo name="home" size={24} color="black" />)
+        tabBarIcon:()=>(<Entypo name="home" size={24} color="black" />),
+        headerShown:false
       }}
-      name="Home" 
-      component={HomeScreen} />
+      name="HomeStack" 
+      component={HomeStack} />
+
       <Tab.Screen 
       options={{
         tabBarLabel:'Đơn hàng',
-        tabBarIcon:()=>(<Foundation name="shopping-cart" size={28} color="black" />)
+        tabBarIcon:()=>(<Foundation name="shopping-cart" size={28} color="black" />),
+        headerShown:false
       }}
-      name="Cart" component={CartScreen} />
+      name="GioHang" component={CartScreen} />
+
       <Tab.Screen 
-      name='NameBrand' component={BrandScreen}/>
+      name='Store' component={BrandScreen}
+      options={{
+        tabBarLabel:'Cửa hàng',
+        tabBarIcon:()=>(<Image style={{width:32, height:32, borderRadius: 10}} source={require('./image/HolmesSweet.png')}></Image>),
+        headerShown:false
+      }}
+      />
+
       <Tab.Screen
       options={{
         tabBarLabel:'Thông báo',
-        tabBarIcon:()=>(<Ionicons name="notifications" size={24} color="black" /> )
+        tabBarIcon:()=>(<Ionicons name="notifications" size={24} color="black" /> ),
+        headerShown:false
       }}
-      name='Notification' component={NotificationScreen}/>
+      name='Notifi' component={NotificationScreen}/>
+
       <Tab.Screen 
       options={{
         tabBarLabel:'Tài khoản',
-         tabBarIcon:()=>(<Ionicons name="person" size={24} color="black" />)
+         tabBarIcon:()=>(<Ionicons name="person" size={24} color="black" />),
+         headerShown:false
       }}
-      name='Profile' component={ProfileStack}/>
+      name='Taikhoan' component={ProfileStack}/>
 
     </Tab.Navigator>
   )

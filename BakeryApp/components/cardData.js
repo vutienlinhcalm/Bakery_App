@@ -1,12 +1,17 @@
 
 
- const cardData = [
+ const category = [
     {
         id: 0,
         name: 'Hamder',
-        desp: 'made form the cream',
-        prize: '777000',
+        image: 'https://firebasestorage.googleapis.com/v0/b/data-tiembanh.appspot.com/o/Product-image%2Fpannacotta%2Fpannacottakiwi.jpg?alt=media&token=38514847-c63a-4f6a-a059-bb93d363f5d4',
+        product:{
+            proname:'Pannacotta',
+            image:'https://firebasestorage.googleapis.com/v0/b/data-tiembanh.appspot.com/o/Product-image%2Fpannacotta%2Fpannacottakiwi.jpg?alt=media&token=38514847-c63a-4f6a-a059-bb93d363f5d4',
+            price:'100000',
+            description:'Product1,Product2,Product3',
+        }
     },
 ]
 
-export default cardData
+export default category

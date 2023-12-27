@@ -1,9 +1,7 @@
-import { View, Text, Image,StyleSheet,TouchableOpacity,SafeAreaView,ScrollView, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Text, Image,StyleSheet,TouchableOpacity,SafeAreaView,ScrollView,Alert } from 'react-native'
+import React, { useState } from 'react'
 import CustomTextInput from '../common/CustomTextInput'
 import firebase from 'firebase/compat/app';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/compat/auth';
-import {auth} from '../../firebase';
 const SignInScreen = ({navigation}) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -28,7 +26,14 @@ const SignInScreen = ({navigation}) => {
             const user = userCredentials.user;
         })
         .catch(function(error) {
-            console.log(error);
+            if(error){
+                Alert.alert('Đăng nhập không thành công', 'Tên đăng nhập hoặc mật khẩu không đúng', [
+                    {
+                      text: 'Đóng',
+                      style: {color:'#FF5757'},
+                    }
+                  ]);
+            }
         });
     }
   return (
@@ -74,10 +79,18 @@ const SignInScreen = ({navigation}) => {
         </Text>
         </TouchableOpacity>
        
-        <Text style={styles.textbuttom}
+        <TouchableOpacity style={styles.textbuttom}
         onPress={() => navigation.navigate('Register')}>
-            Bạn chưa có tài khoản?
-        </Text>
+           <Text>
+           Bạn chưa có tài khoản?
+           </Text> 
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.textbuttom}
+        onPress={() => navigation.navigate('Forget')}>
+           <Text>
+            Quên mật khẩu ?
+           </Text>
+        </TouchableOpacity>
         </ScrollView>
     </SafeAreaView>
   )
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     button:{
-        backgroundColor:'red',
+        backgroundColor:'#FF5757',
         justifyContent:'center',
         alignItems:'center',
         alignSelf: 'center',
@@ -108,12 +121,12 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         color:'#000000',
-        fontSize:28,
+        fontSize:32,
         fontWeight: 'bold',
     },
     textbuttom:{
         marginTop:20,
-        fontSize:28,
+        fontSize:32,
         fontWeight: '600',
         alignSelf: 'center',
         textDecorationLine:'underline'
