@@ -3,7 +3,8 @@ import React from 'react'
 
 const BrandScreen = () => {
   return (
-    <ScrollView>
+    <View style={{marginTop:60}}>
+
       <View style={styles.container}>
         <View style={styles.coverImage}>
         <Image style={styles.image} 
@@ -32,8 +33,8 @@ const BrandScreen = () => {
         resizeMode={'contain'}/>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.textheader}>Cơ sở Sala Quận 2</Text>
-          <Text>312 P. Thảo Điền, Quận 2, Hồ Chí Minh, Việt Nam</Text>
+          <Text style={styles.textheader}>Cơ sở Sala Quận Thủ Đức</Text>
+          <Text>312 P. Thảo Điền, Quận Thủ Đức, Hồ Chí Minh, Việt Nam</Text>
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.buttonCall}>
               <Image source={require('../image/telephone.png')} style={styles.btnImage}/>
@@ -46,7 +47,8 @@ const BrandScreen = () => {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
+    
   )
 }
 const styles = StyleSheet.create({

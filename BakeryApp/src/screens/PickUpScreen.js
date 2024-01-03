@@ -11,9 +11,9 @@ import {
 import React, { useState } from "react";
 import HorizontalDatepicker from "@awrminkhodaei/react-native-horizontal-datepicker";
 import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 
-const PickUpScreen = () => {
+
+const PickUpScreen = ({navigation}) => {
   const [selectedDate, setSelectedDate] = useState("");
   const[adress, setAdress] = useState('');
   const cart = useSelector((state) => state.cart.cart);
@@ -83,7 +83,6 @@ const PickUpScreen = () => {
       time: "8:00 PM",
     },
   ];
-  const navigation = useNavigation();
   const proceedToCart = () => {
       if(!selectedDate || !selectedTime || !delivery){
         Alert.alert(
@@ -101,7 +100,7 @@ const PickUpScreen = () => {
           );
       }
       if(selectedDate && selectedTime && delivery){
-        navigation.replace("Cart",{
+        navigation.navigate("Cart",{
             pickUpDate:selectedDate,
             selectedTime:selectedTime,
             no_Of_days:delivery,
@@ -113,7 +112,7 @@ const PickUpScreen = () => {
 
   return (
     <>
-      <View style={{marginTop:50}}>
+      <View style={{marginTop:10}}>
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
           Địa Chỉ
         </Text>

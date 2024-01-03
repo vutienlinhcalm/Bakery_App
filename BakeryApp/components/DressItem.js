@@ -15,7 +15,6 @@ const DressItem = ({item}) => {
       dispatch(addToCart(item)); // cart
       dispatch(incrementQty(item)); // product
     };
-    console.log(item)
     // console.log(item.poduct[0].name);
   return (
     <View>

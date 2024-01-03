@@ -47,22 +47,22 @@ const CartScreen = () => {
   };
   return (
     <>
-      <ScrollView style={{ marginTop: 50 }}>
+      <ScrollView style={{ marginTop: 10 }}>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          Alert.alert('Đặt hành thành công');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Text style={styles.modalText}>Đặt hàng thành công</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={styles.textStyle}>Đóng</Text>
             </Pressable>
           </View>
         </View>
@@ -86,9 +86,11 @@ const CartScreen = () => {
                 size={24}
                 color="black"
               />
-              <Text>Your Bucket</Text>
+              <Text>Trang Chủ</Text>
             </View>
-
+            <Text style={{ fontSize: 16, fontWeight: "bold", margin:10 }}>
+                Chi tiết đơn hàng
+              </Text>
             <Pressable
               style={{
                 backgroundColor: "white",
@@ -151,7 +153,7 @@ const CartScreen = () => {
                     <Pressable>
                       <Text
                         style={{
-                          fontSize: 19,
+                          fontSize: 20,
                           color: "#088F8F",
                           paddingHorizontal: 8,
                           fontWeight: "600",
@@ -188,98 +190,14 @@ const CartScreen = () => {
             </Pressable>
 
             <View style={{ marginHorizontal: 10 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold", marginTop: 30 }}>
-                Billing Details
-              </Text>
               <View
                 style={{
                   backgroundColor: "white",
-                  borderRadius: 7,
+                  borderRadius: 10,
                   padding: 10,
                   marginTop: 15,
                 }}
               >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "400", color: "gray" }}
-                  >
-                    Item Total
-                  </Text>
-                  <Text style={{ fontSize: 18, fontWeight: "400" }}>
-                    ₹{total}
-                  </Text>
-                </View>
-
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginVertical: 8,
-                  }}
-                >
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "400", color: "gray" }}
-                  >
-                    Delivery Fee | 1.2KM
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: "400",
-                      color: "#088F8F",
-                    }}
-                  >
-                    FREE
-                  </Text>
-                </View>
-
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
-                  >
-                    Free Delivery on Your order
-                  </Text>
-                </View>
-
-                <View
-                  style={{
-                    borderColor: "gray",
-                    height: 1,
-                    borderWidth: 0.5,
-                    marginTop: 10,
-                  }}
-                />
-
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginVertical: 10,
-                  }}
-                >
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
-                  >
-                    selected Date
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: "400",
-                      color: "#088F8F",
-                    }}
-                  >
-                    {/* {route.params.pickUpDate} */}
-                  </Text>
-                </View>
 
                 <View
                   style={{
@@ -291,7 +209,7 @@ const CartScreen = () => {
                   <Text
                     style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
                   >
-                    No Of Days
+                    Ngày giao hàng
                   </Text>
 
                   <Text
@@ -316,7 +234,7 @@ const CartScreen = () => {
                   <Text
                     style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
                   >
-                    selected Pick Up Time
+                    Thời gian nhận
                   </Text>
 
                   <Text
@@ -350,7 +268,7 @@ const CartScreen = () => {
                     Tổng tiền
                   </Text>
                   <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                    {total }
+                    {total } vnĐ
                   </Text>
                 </View>
               </View>
@@ -374,12 +292,12 @@ const CartScreen = () => {
           }}
         >
           <View>
-            <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "white" }}>
               {cart.length} Sản phẩm | vnĐ {total}
             </Text>
             <Text
               style={{
-                fontSize: 15,
+                fontSize: 16,
                 fontWeight: "400",
                 color: "white",
                 marginVertical: 6,
@@ -390,7 +308,7 @@ const CartScreen = () => {
           </View>
 
           <Pressable onPress={placeOrder}>
-            <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "white" }}>
               Đặt hàng
             </Text>
           </Pressable>
@@ -407,7 +325,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
     margin: 20,

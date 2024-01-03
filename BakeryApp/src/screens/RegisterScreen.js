@@ -9,10 +9,12 @@ const RegisterScreen = ({navigation}) => {
   const[email, setEmail] = useState('');
   const[username, setUsername] = useState('');
   const[password, setPassword] = useState('');
+  const[phone, setPhone] = useState('');
   const[confirmPassword, setConfirmPassword] = useState('');
   const[badEmail, setBadEmail] = useState(false);
   const[badUsername, setBadUsername] = useState(false);
   const[badPassword, setBadPassword] = useState(false);
+  const[badPhone, setBadPhone] = useState(false);
   const[badConfirmPassword, setBadConfirmPassword] = useState(false);
 
   const validate = ()=>{
@@ -53,7 +55,8 @@ const RegisterScreen = ({navigation}) => {
          setDoc(doc(db,"users",`${myUserUid}`),{
            email:user,
            username:username,
-           password:password
+           password:password,
+           phone:phone
          })
      firebase.auth().currentUser.sendEmailVerification()
      .then(()=>{
@@ -98,6 +101,18 @@ const RegisterScreen = ({navigation}) => {
         {
         badUsername === true && (<Text style={{marginTop:10,alignSelf:'center', color:'red'}}>Vui lòng tên tài khoản</Text>)
        }
+       <CustomTextInput 
+       placeholder={'Điện thoai'}
+       icon={source=require('../image/smartphone.png')}
+       type={'numbers'}
+       value={phone}
+        onChangeText={(txt)=>{
+            setPhone(txt);
+        }}
+       />
+        {
+        badPhone === true && (<Text style={{marginTop:10,alignSelf:'center', color:'red'}}>Vui lòng nhập điện thoại</Text>)
+        }
        <CustomTextInput 
        placeholder={'Mật khẩu'}
        icon={source=require('../image/lock.png')}

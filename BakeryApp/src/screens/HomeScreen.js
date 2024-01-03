@@ -7,7 +7,6 @@ import { Feather } from "@expo/vector-icons";
 import { Ionicons } from '@expo/vector-icons';
 import CardContainerTemp from '../../components/Card-containerTemp';
 import Carousel from '../../components/Carousel';
-import Services from '../../components/Services';
 import DressItem from '../../components/Card-containerTemp';
 import { collection, getDocs,query, where } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -122,7 +121,7 @@ const HomeScreen = ({navigation}) => {
       </View>
        {/* Image Carousel */}
        <Carousel />
-       <Text style={styles.text}>Panna Cotta</Text>
+       <Text style={styles.text}>Sản Phẩm</Text>
       {/* Render all the Products */}
       {product.map((item, index) => (
           <DressItem item={item} key={index} />
@@ -144,12 +143,12 @@ const HomeScreen = ({navigation}) => {
             }}
           >
             <View>
-              <Text style={{fontSize:17,fontWeight:"600",color:"white"}}>{cart.length} items |  $ {total}</Text>
-              <Text style={{fontSize:15,fontWeight:"400",color:"white",marginVertical:6}}>extra charges might apply</Text>
+              <Text style={{fontSize:17,fontWeight:"600",color:"white"}}>{cart.length} items |   {total} vnĐ</Text>
+              <Text style={{fontSize:15,fontWeight:"400",color:"white",marginVertical:6}}>Tổng tiền</Text>
             </View>
     
             <Pressable onPress={() => navigation.navigate('PickUp')}>
-              <Text style={{fontSize:17,fontWeight:"600",color:"white"}}>Proceed to pickup</Text>
+              <Text style={{fontSize:17,fontWeight:"600",color:"white"}}>Đặt hàng</Text>
             </Pressable>
           </Pressable>
           )}
@@ -160,7 +159,6 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        marginTop:50
     },
     text:{
         marginTop:10,

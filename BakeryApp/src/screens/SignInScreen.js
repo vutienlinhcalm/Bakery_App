@@ -116,17 +116,17 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop:30,
         width:'85%',
-        height:50,
+        height:60,
         borderRadius:50,
     },
     buttonText:{
         color:'#000000',
-        fontSize:32,
+        fontSize:40,
         fontWeight: 'bold',
     },
     textbuttom:{
         marginTop:20,
-        fontSize:32,
+        fontSize:40,
         fontWeight: '600',
         alignSelf: 'center',
         textDecorationLine:'underline'
